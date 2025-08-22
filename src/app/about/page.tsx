@@ -8,7 +8,7 @@ export default function AboutPage() {
       <p>
         Student Number: <strong>21279466</strong>
       </p>
-      <p>This website demonstrates generating HTML5 + JS code for LMS.</p>
+      <p>This website generates HTML5 + JS code for LMS.</p>
 
       <h2>Video Demo</h2>
       <video controls width="600">
