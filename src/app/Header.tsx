@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 export default function Header() {
   const [darkMode, setDarkMode] = useState(false);
+  const [burgerOpen, setBurgerOpen] = useState(false);
 
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
@@ -29,7 +30,7 @@ export default function Header() {
     >
       <div>Student No. 21279466</div>
 
-      {/* Page links */}
+      {/* Keep existing page links exactly as they are */}
       <nav>
         <a
           href="/"
@@ -63,20 +64,100 @@ export default function Header() {
         </a>
       </nav>
 
-      {/* Dark Mode Toggle */}
-      <button
-        onClick={() => setDarkMode(!darkMode)}
+      {/* Right-side controls: Burgers dropdown + Dark Mode */}
+      <div
         style={{
-          padding: "6px 12px",
-          borderRadius: "20px",
-          border: "1px solid",
-          cursor: "pointer",
-          background: darkMode ? "#444" : "#f5f5f5",
-          color: darkMode ? "white" : "black",
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          position: "relative", // anchor for the dropdown
         }}
       >
-        {darkMode ? "☾ Dark" : "☀ Light"}
-      </button>
+        {/* New Burgers button */}
+        <button
+          onClick={() => setBurgerOpen((v) => !v)}
+          aria-haspopup="menu"
+          aria-expanded={burgerOpen}
+          aria-controls="burgers-menu"
+          style={{
+            padding: "6px 12px",
+            borderRadius: "20px",
+            border: "1px solid",
+            cursor: "pointer",
+            background: darkMode ? "#444" : "#f5f5f5",
+            color: darkMode ? "white" : "black",
+          }}
+        >
+          🍔 Burgers
+        </button>
+
+        {/* Dropdown with Cheeseburger + Chicken Burger */}
+        {burgerOpen && (
+          <div
+            id="burgers-menu"
+            role="menu"
+            style={{
+              position: "absolute",
+              top: "110%",
+              right: 0,
+              background: darkMode ? "#333" : "#fff",
+              color: darkMode ? "#fff" : "#000",
+              border: darkMode ? "1px solid #444" : "1px solid #ccc",
+              borderRadius: "10px",
+              padding: "8px 10px",
+              boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
+              minWidth: "180px",
+              zIndex: 10,
+            }}
+          >
+            <button
+              role="menuitem"
+              onClick={() => setBurgerOpen(false)}
+              style={{
+                width: "100%",
+                textAlign: "left",
+                background: "transparent",
+                border: "none",
+                padding: "8px",
+                cursor: "pointer",
+                color: "inherit",
+              }}
+            >
+               Cheeseburger - $12 + Chips & Drink = $20
+            </button>
+            <button
+              role="menuitem"
+              onClick={() => setBurgerOpen(false)}
+              style={{
+                width: "100%",
+                textAlign: "left",
+                background: "transparent",
+                border: "none",
+                padding: "8px",
+                cursor: "pointer",
+                color: "inherit",
+              }}
+            >
+               Chicken Burger - $12 + Chips & Drink = $20
+            </button>
+          </div>
+        )}
+
+        {/* Dark Mode Toggle */}
+        <button
+          onClick={() => setDarkMode(!darkMode)}
+          style={{
+            padding: "6px 12px",
+            borderRadius: "20px",
+            border: "1px solid",
+            cursor: "pointer",
+            background: darkMode ? "#444" : "#f5f5f5",
+            color: darkMode ? "white" : "black",
+          }}
+        >
+          {darkMode ? "☾ Dark" : "☀ Light"}
+        </button>
+      </div>
     </header>
   );
 }
