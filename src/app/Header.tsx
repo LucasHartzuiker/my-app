@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
+{/* Using "usestate" to track darkmode toggle and store on localstorage and whether burger menu is open or not */}
 export default function Header() {
   const [darkMode, setDarkMode] = useState(false);
   const [burgerOpen, setBurgerOpen] = useState(false);
@@ -30,7 +30,7 @@ export default function Header() {
     >
       <div>Student No. 21279466</div>
 
-      {/* Keep existing page links exactly as they are */}
+      
       <nav>
         <a
           href="/"
