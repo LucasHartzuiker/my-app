@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 
+{/* Using "usestate" to track darmode toggle and burger menu toggle & store in localstorage */}
 export default function Header() {
   const [darkMode, setDarkMode] = useState(false);
   const [burgerOpen, setBurgerOpen] = useState(false);
@@ -30,7 +31,7 @@ export default function Header() {
     >
       <div>Student No. 21279466</div>
 
-      {/* Keep existing page links exactly as they are */}
+      
       <nav>
         <a
           href="/"
