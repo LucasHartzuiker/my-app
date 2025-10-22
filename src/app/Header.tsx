@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
-{/* Using "usestate" to track darmode toggle and burger menu toggle & store in localstorage */}
 export default function Header() {
   const [darkMode, setDarkMode] = useState(false);
   const [burgerOpen, setBurgerOpen] = useState(false);
@@ -31,38 +31,22 @@ export default function Header() {
     >
       <div>Student No. 21279466</div>
 
-      
       <nav>
-        <a
-          href="/"
-          style={{ color: darkMode ? "white" : "black", marginRight: "15px" }}
-        >
+        <Link href="/" style={{ color: darkMode ? "white" : "black", marginRight: "15px" }}>
           Home
-        </a>
-        <a
-          href="/about"
-          style={{ color: darkMode ? "white" : "black", marginRight: "15px" }}
-        >
+        </Link>
+        <Link href="/about" style={{ color: darkMode ? "white" : "black", marginRight: "15px" }}>
           About
-        </a>
-        <a
-          href="/prelab-questions"
-          style={{ color: darkMode ? "white" : "black", marginRight: "15px" }}
-        >
+        </Link>
+        <Link href="/prelab-questions" style={{ color: darkMode ? "white" : "black", marginRight: "15px" }}>
           Prelab Questions
-        </a>
-        <a
-          href="/escape-room"
-          style={{ color: darkMode ? "white" : "black", marginRight: "15px" }}
-        >
+        </Link>
+        <Link href="/escape-room" style={{ color: darkMode ? "white" : "black", marginRight: "15px" }}>
           Escape Room
-        </a>
-        <a
-          href="/coding-races"
-          style={{ color: darkMode ? "white" : "black" }}
-        >
+        </Link>
+        <Link href="/coding-races" style={{ color: darkMode ? "white" : "black" }}>
           Coding Races
-        </a>
+        </Link>
       </nav>
 
       {/* Right-side controls: Burgers dropdown + Dark Mode */}
@@ -71,10 +55,9 @@ export default function Header() {
           display: "flex",
           alignItems: "center",
           gap: "10px",
-          position: "relative", // anchor for the dropdown
+          position: "relative",
         }}
       >
-        {/* New Burgers button */}
         <button
           onClick={() => setBurgerOpen((v) => !v)}
           aria-haspopup="menu"
@@ -92,7 +75,6 @@ export default function Header() {
           🍔 Burgers
         </button>
 
-        {/* Dropdown with Cheeseburger + Chicken Burger */}
         {burgerOpen && (
           <div
             id="burgers-menu"
@@ -124,7 +106,7 @@ export default function Header() {
                 color: "inherit",
               }}
             >
-               Cheeseburger - $12 + Chips & Drink = $20
+              Cheeseburger - $12 + Chips & Drink = $20
             </button>
             <button
               role="menuitem"
@@ -139,12 +121,11 @@ export default function Header() {
                 color: "inherit",
               }}
             >
-               Chicken Burger - $12 + Chips & Drink = $20
+              Chicken Burger - $12 + Chips & Drink = $20
             </button>
           </div>
         )}
 
-        {/* Dark Mode Toggle */}
         <button
           onClick={() => setDarkMode(!darkMode)}
           style={{

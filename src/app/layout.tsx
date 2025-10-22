@@ -5,7 +5,7 @@ import Footer from "./Footer";
 
 export const metadata = {
   title: "LTU Tabs Generator",
-  description: "Generate HTML + JS Tabs code for Moodle LMS",
+  description: "Generate HTML + JS Tabs code for LMS",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
