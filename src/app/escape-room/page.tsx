@@ -62,25 +62,33 @@ const EscapeRoomPage: React.FC = () => {
   }, [timeLeft]);
 
   useEffect(() => {
-    const stage = stages[currentStage];
-    if ("initialCode" in stage && stage.initialCode) {
-      setCodeInput(stage.initialCode);
-    }
-  }, [currentStage]);
+  const stage = stages[currentStage];
+  if (!stage) return; // ✅ Prevent crash if stage is undefined
+
+  setCodeInput(stage.initialCode || "");
+}, [currentStage]);
 
   const startTimer = () => setTimeLeft(timer * 60);
 
   const handleSubmit = () => {
-    const stage = stages[currentStage];
-    const input = currentStage === 2 ? jsonOutput : codeInput;
-    if (stage.validate(input)) {
-      alert("Stage complete!");
+  const stage = stages[currentStage];
+  const input = currentStage === 2 ? jsonOutput : codeInput;
+
+  if (stage.validate(input)) {
+    alert("Stage complete!");
+
+    // Only advance if there are more stages
+    if (currentStage < stages.length - 1) {
       setCurrentStage((s) => s + 1);
       setCodeInput("");
     } else {
-      alert("Try again!");
+      // Final stage complete — optionally reset or show final message
+      setCurrentStage(stages.length); // triggers final screen
     }
-  };
+  } else {
+    alert("Try again!");
+  }
+};
 
   const convertCSV = () => {
     const lines = csvInput.split("\n");
